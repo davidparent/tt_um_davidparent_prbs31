@@ -15,11 +15,22 @@ module tt_um_davidparent_hdl (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
+    reg [7:0] counter; 
+    always @(posedge clk or posedge rst_n) begin
+        if (rst_n) begin
+        counter <= 8'd0; // Reset counter
+         
+    end else begin
+        // Increment counter on each clock cycle
+        counter <= counter + 1;
+       
+    end
+end  
   reg [7:0] counter;    // Counter for generating frequency
   // All output pins must be assigned. If not used, assign to 0.
   //assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
-  assign counter =  ui_in
-  assign uo_out  = counter;
+ 
+  assign uo_out  = ui_in;
   assign uio_out = 0;
   assign uio_oe  = 0;
 
