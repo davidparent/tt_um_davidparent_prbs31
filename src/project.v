@@ -18,11 +18,18 @@ module tt_um_davidparent_hdl (
     reg [7:0] counter; 
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
-        counter <= 8'd0; // Reset counter
+        counter <= 8'd1; // Reset counter
          
     end else begin
         // Increment counter on each clock cycle
-        counter <= counter + 1;
+        counter[0] <= counter[6] ^ counter[7] ;
+        counter[1] <=counter[0] ;
+        counter[2] <=counter[1] ;
+        counter[3] <=counter[2] ;
+        counter[4] <=counter[3] ;
+        counter[5] <=counter[4] ;
+        counter[6] <=counter[5] ;
+        counter[7] <=counter[6] ;
        
     end
 end  
