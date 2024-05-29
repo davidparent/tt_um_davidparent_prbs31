@@ -15,15 +15,15 @@ module tt_um_davidparent_hdl (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-    reg [7:0] counter; 
+    reg [31:0] counter; 
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
         counter <= 8'd1; // Reset counter
          
     end else begin
         // Increment counter on each clock cycle
-        counter[0] <= counter[6] ^ counter[7] ;
-        counter[7:1] <=counter[6:0] ;
+        counter[0] <= counter[30] ^ counter[31] ;
+        counter[31:1] <=counter[30:0] ;
          
        
     end
