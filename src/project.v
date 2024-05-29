@@ -28,7 +28,7 @@ always @(posedge clk or posedge rst_n) begin
         counter <= counter + 1;
         // Toggle output when counter reaches half of its maximum value
         if (counter == 16'd32768) begin
-            uio_out[0] <= ~uio_out[0];
+            ucounter <= ucounter;
         end
     end
 end
