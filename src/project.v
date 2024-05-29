@@ -23,13 +23,8 @@ module tt_um_davidparent_hdl (
     end else begin
         // Increment counter on each clock cycle
         counter[0] <= counter[6] ^ counter[7] ;
-        counter[1] <=counter[0] ;
-        counter[2] <=counter[1] ;
-        counter[3] <=counter[2] ;
-        counter[4] <=counter[3] ;
-        counter[5] <=counter[4] ;
-        counter[6] <=counter[5] ;
-        counter[7] <=counter[6] ;
+        counter[7:1] <=counter[6:0] ;
+         
        
     end
 end  
