@@ -20,10 +20,10 @@ module tt_um_davidparent_hdl (
   //assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
   assign counter =  ui_in
   assign uo_out  = counter;
-    assign uio_out = 0;
+  assign uio_out = 0;
   assign uio_oe  = 0;
 
   // List all unused inputs to prevent warnings
-  wire _unused = &{ena, clk, rst_n, 1'b0}; 
+  wire _unused = &{ena, 1'b0}; 
 
 endmodule
