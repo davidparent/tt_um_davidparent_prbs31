@@ -18,17 +18,18 @@ module tt_um_davidparent_hdl (
 
 
 reg [15:0] counter;    // Counter for generating frequency
-
-always @(posedge clk or posedge rst_n) begin
+    
+always @(posedge clk ) begin
     if (rst_n) begin
         counter <= 16'd0; // Reset counter
         uio_out[0] <= 1'b0;       // Ensure output is low on reset
     end else begin
         // Increment counter on each clock cycle
         counter <= counter + 1;
-        // Toggle output when counter reaches half of its maximum value
+        uio_out[0]=counter[0]
+        // Toggle output when the counter reaches half of its maximum value
         if (counter == 16'd32768) begin
-            ucounter <= ucounter;
+            counter <= counter;
         end
     end
 end
