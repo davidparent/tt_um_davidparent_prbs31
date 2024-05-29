@@ -42,6 +42,6 @@ end
   assign uio_oe  = 0;
 
   // List all unused inputs to prevent warnings
-    wire _unused = &{ena, uio_in, ui_in, 1'b0}; 
+    wire _unused = &{ena, uio_in, ui_in,uo_out[1],uo_out[2],uo_out[3],uo_out[4],uo_out[5], uo_out[6], uo_out[7], 1'b0}; 
 
 endmodule
