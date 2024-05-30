@@ -35,13 +35,13 @@ end
   assign uo_out[0] =counter[0] ;
   assign uio_out = 0;
   assign uio_oe  = 0;
-  assign uo_out[7]= 0;
-  assign uo_out[6]= 0;
-  assign uo_out[5]= 0;
-  assign uo_out[4]= 0;
-  assign uo_out[3]= 0;
-  assign uo_out[2]= 0;
-  assign uo_out[1]= 0;
+  assign uo_out[7:1]= 7'd0;
+  //assign uo_out[6]= 0;
+  //assign uo_out[5]= 0;
+  //assign uo_out[4]= 0;
+  //assign uo_out[3]= 0;
+  //assign uo_out[2]= 0;
+  //assign uo_out[1]= 0;
 
   // List all unused inputs to prevent warnings
     wire _unused = &{ena, uio_in, ui_in, 1'b0}; 
