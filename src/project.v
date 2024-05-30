@@ -15,15 +15,15 @@ module tt_um_davidparent_hdl (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-    reg [31:0] counter; 
+    reg [31:0] lfsr; 
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
-        counter <= 31'd1; // Reset counter
+        lfsr <= 31'd1; // Reset counter
          
     end else begin
         // Increment counter on each clock cycle
-        counter[0] <= counter[27] ^ counter[30] ;
-        counter[30:1] <=counter[29:0] ;
+        lfsr[0] <= lfsr[27] ^ lfsr[30] ;
+        lfsr[30:1] <=lfsr[29:0] ;
          
        
     end
@@ -32,16 +32,11 @@ end
   // All output pins must be assigned. If not used, assign to 0.
   //assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
  
-  assign uo_out[0] =counter[0] ;
+  assign uo_out[0] =lfsr[31] ;
   assign uio_out = 0;
   assign uio_oe  = 0;
   assign uo_out[7:1]= 7'd0;
-  //assign uo_out[6]= 0;
-  //assign uo_out[5]= 0;
-  //assign uo_out[4]= 0;
-  //assign uo_out[3]= 0;
-  //assign uo_out[2]= 0;
-  //assign uo_out[1]= 0;
+
 
   // List all unused inputs to prevent warnings
     wire _unused = &{ena, uio_in, ui_in, 1'b0}; 
