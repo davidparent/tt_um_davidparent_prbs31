@@ -13,7 +13,7 @@ module tt_um_davidparent_hdl (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-    reg [31:0] lfsr; 
+    reg [30:0] lfsr; 
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
         lfsr <= 31'd1; // Reset counter
