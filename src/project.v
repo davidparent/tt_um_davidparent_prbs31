@@ -14,8 +14,9 @@ module tt_um_davidparent_hdl (
     input  wire       rst_n     // reset_n - low to reset
 );
     reg [30:0] lfsr; 
-    reg [31:0] lfsr_test;
-    reg 
+    reg [30:0] lfsr_test;
+    reg [6:0] input;
+    reg[0] comp_out;
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
         lfsr <= 31'd1; // Reset counter
@@ -26,15 +27,22 @@ module tt_um_davidparent_hdl (
         lfsr[30:1] <=lfsr[29:0] ;
         lfsr_test[0] <=  lfsr[30];
         lfsr_test[30:1] <=lfsr_test[29:0] ;
+        if(input[6:0]<lfsr[30:25) begin
+            comp_out[0]<=b'0;
+        end else begin
+            comp_out[0]<=b'1;
+        end
     end
 end  
   // All output pins must be assigned. If not used, assign to 0.
   assign uo_out[0] =lfsr[30] ;
-  assign uo_in[0] =lfsr_test[0] ;  
-  assign uo_out[1] =lfsr_test[0] ^(lfsr_test[27] ^ lfsr_test[30])  ;  
+  assign uo_out[1] comp_out[0] ;                         
+  assign uo_in[0] =lfsr_test[0] ; 
+  assign input[6:0] =ui_in[7:1];                         
+  assign uo_out[2] =lfsr_test[0] ^(lfsr_test[27] ^ lfsr_test[30])  ;  
   assign uio_out = 0;
   assign uio_oe  = 0;
-  assign uo_out[7:2]= 6'd0;
+  assign uo_out[7:3]= 6'd0;
   // List all unused inputs to prevent warnings
-    wire _unused = &{ena, uio_in, ui_in, 1'b0}; 
+    wire _unused = &{ena, uio_in, 1'b0}; 
 endmodule
