@@ -15,15 +15,15 @@ module tt_um_davidparent_hdl (
 );
     reg [30:0] lfsr;
     reg [30:0] lfsr_test;
-    reg [1:0]  temp;
+    reg [7:0]  temp;
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
         lfsr <= 31'b1;  
         lfsr_test <= 31'b1;      
-        temp<=2'b0;
+        temp<=8'b0;
     end else begin
         // Increment counter on each clock cycle
-        temp[1:0]<=ui_in[1:0];
+        temp[7:1]<=ui_in[7:1];
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
         uo_out[1] <= temp[0]^(lfsr_test[27] ^ lfsr_test[30]) ;
