@@ -32,7 +32,7 @@ end
   assign uio_out = 0;
   assign uio_oe  = 0;
   assign uo_out[7:1]= 7'd0;
-  // List all unused inputs to prevent warnings
+  // List all unused inputs to prevent 
     wire _unused = &{ena, uio_in, ui_in, 1'b0}; 
 endmodule
 
