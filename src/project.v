@@ -22,15 +22,13 @@ module tt_um_davidparent_hdl (
         lfsr_test <= 31'b1;      
         temp<=8'b0;
     end else begin
-        // Increment counter on each clock cycle
-        temp[7:1]<=ui_in[7:1];
+        temp[7:0]<=ui_in[7:0];
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
-        uo_out[1] <= temp[0]^(lfsr_test[27] ^ lfsr_test[30]) ;
-        uo_out[0] <=lfsr[30]
-        lfsr[30:1] <=lfsr[29:0] ; 
         lfsr_test[0]=temp[0];
-        lfsr_test[30:1] <=lfsr_test[29:0] ;
+        lfsr_test[30:1] <=lfsr_test[29:0] ;        
+        uo_out[1] <= temp[0]^(lfsr_test[27] ^ lfsr_test[30]) ;
+        uo_out[0] <=lfsr[30] 
     end
 end  
   // All output pins must be assigned. If not used, assign to 0.
@@ -39,6 +37,6 @@ end
   assign uio_oe  = 0;
   assign uo_out[7:2]= 6'b0;
   // List all unused inputs to prevent warnings
-    wire _unused = &{ena, uio_in, ui_in[7:2], 1'b0}; 
+    wire _unused = &{ena, uio_in, 1'b0}; 
 endmodule
 
