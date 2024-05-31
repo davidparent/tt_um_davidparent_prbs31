@@ -20,9 +20,9 @@ module tt_um_davidparent_hdl (
         if (rst_n) begin
         lfsr <= 31'b1;  
         lfsr_test <= 31'b1;      
-        temp[7:0] <=8'b0;
+        // temp[7:0] <=8'b0;
     end else begin
-        temp[7:0]<=ui_in[7:0];
+       // temp[7:0]<=ui_in[7:0];
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
         lfsr_test[0]=temp[0];
@@ -32,6 +32,7 @@ end
   // All output pins must be assigned. If not used, assign to 0.
   assign uo_out[0] = lfsr[30]    
   assign uo_out[1] = 0 ;
+  assign [7:0] = ui_in[7:0];  
   assign uio_out = 0;
   assign uio_oe  = 0;
   assign uo_out[7:2]= 6'b0;
