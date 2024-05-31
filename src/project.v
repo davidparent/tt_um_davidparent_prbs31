@@ -13,12 +13,15 @@ module tt_um_davidparent_hdl (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-    reg [30:0] lfsr; 
+    reg [30:0] lfsr;
+    reg [1:0]  temp;
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
         lfsr <= 31'd1; // Reset counter
+        temp<=2'd0;
     end else begin
         // Increment counter on each clock cycle
+        temp[1:0]<=ui_in[0:1];
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
     end
@@ -29,6 +32,6 @@ end
   assign uio_oe  = 0;
   assign uo_out[7:1]= 7'd0;
   // List all unused inputs to prevent warnings
-    wire _unused = &{ena, uio_in, ui_in, 1'b0}; 
+    wire _unused = &{ena, uio_in, ui_in[7:2], 1'b0}; 
 endmodule
 
