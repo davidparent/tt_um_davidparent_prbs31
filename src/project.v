@@ -14,27 +14,20 @@ module tt_um_davidparent_hdl (
     input  wire       rst_n     // reset_n - low to reset
 );
     reg [30:0] lfsr;
-    reg [7:0] lfsr_test;
-    reg [7:0]  temp;
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
         lfsr <= 31'd1; 
-        lfsr_test <=8'd1; 
     end else begin
         // Increment counter on each clock cycle
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
-        //lfsr_test <=~lfsr_test; 
-        lfsr_test[0] <= lfsr_test[7] ^ lfsr_test[7] ;
-        lfsr_test[7:1] <=lfsr_test[6:0] 
     end
 end  
   // All output pins must be assigned. If not used, assign to 0.
   assign uo_out[0] =lfsr[30] ;
-  assign uo_out[1] =lfsr_test[30] ;
   assign uio_out = 0;
   assign uio_oe  = 0;
-  assign uo_out[7:2]= 6'd0;
+  assign uo_out[7:1]= 7'd0;
   // List all unused inputs to prevent 
     wire _unused = &{ena, uio_in, ui_in, 1'b0}; 
 endmodule
