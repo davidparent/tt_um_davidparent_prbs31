@@ -20,6 +20,7 @@ module tt_um_davidparent_hdl (
         lfsr <= 31'd1; // Reset counter
         lfsr_test <= 31'd1; // Reset counter    
     end else begin
+        lfsr_test[0]=uo_in[0] ; 
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;         
         lfsr_test[30:1] <=lfsr_test[29:0] ;
@@ -27,13 +28,11 @@ module tt_um_davidparent_hdl (
 end  
   // All output pins must be assigned. If not used, assign to 0.
   assign uo_out[0] =lfsr[30] ;
- // assign uo_out[1] comp_out[0] ;    
-  assign uo_out[1]=1'b0 
-  assign uo_in[0] =lfsr_test[0] ;                         
-  assign uo_out[2] =lfsr_test[0] ^(lfsr_test[27] ^ lfsr_test[30])  ;  
+  assign uo_out[7:1]=1'b0                      
+  //assign uo_out[2] =lfsr_test[0] ^(lfsr_test[27] ^ lfsr_test[30])  ;  
   assign uio_out = 0;
   assign uio_oe  = 0;
   assign uo_out[7:3]= 5'd0;
   // List all unused inputs to prevent warnings
-    wire _unused = &{ena, uio_in, 1'b0}; 
+    wire _unused = &{ena, uio_in,ui_in[7,1], 1'b0}; 
 endmodule
