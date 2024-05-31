@@ -18,7 +18,9 @@ module tt_um_davidparent_hdl (
     reg [7:0]  temp;
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
-        lfsr <= 31'd1; // Reset counter
+        lfsr <= 31'd1; 
+        lfsr_test <= 31'd1;
+        temp<=8'd1    
     end else begin
         // Increment counter on each clock cycle
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
