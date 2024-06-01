@@ -20,14 +20,14 @@ module tt_um_davidparent_hdl (
         if (rst_n) begin
         lfsr <= 31'd1; 
         lfsr_test <= 31'd1;   
-        Input<=8'd1;    
+        Input<=0;    
     end else begin
         // Increment counter on each clock cycle
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
         lfsr_test[0] <= lfsr_test[27] ^ lfsr_test[30] ;
         lfsr_test[30:1] <=lfsr_test[29:0] ;  
-        Input<=~Input;
+        Input<=Input+1;
     end
 end  
   // All output pins must be assigned. If not used, assign to 0. 
