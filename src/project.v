@@ -15,7 +15,7 @@ module tt_um_davidparent_hdl (
 );
     reg [30:0] lfsr;
     reg [30:0] lfsr_test;
-    reg [8:0] Input;
+    reg [8:0] InputA;
     reg [8:0] InputB;
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
@@ -27,14 +27,14 @@ module tt_um_davidparent_hdl (
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
         InputA[8]<=ui_in[0];
-        lfsr_test[0] <= Input[8];
+        lfsr_test[0] <= InputA[8];
         lfsr_test[30:1] <=lfsr_test[29:0] ;
         InputA[7:1]<=ui_in[7:1];
         InputB[7:1]<=uio_in[7:1];
         if (InputA[7:1]<lfsr[30:24]) begin
             InputA[0]<=1'b0;
         end else begin
-            Input[0]<=1'b1;
+            InputA[0]<=1'b1;
         end 
         if (InputB[7:1]<lfsr[30:24]) begin
             InputB[0]<=1'b0;
