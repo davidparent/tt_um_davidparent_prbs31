@@ -39,7 +39,7 @@ module tt_um_davidparent_hdl (
 end  
   // All output pins must be assigned. If not used, assign to 0. 
   assign uo_out[0] =lfsr[30] ;
-    assign uo_out[1] =Input[8]^(lfsr_test[27] ^ lfsr_test[30] );   
+    assign uo_out[1] =(lfsr_test[27] ^ lfsr_test[30] );   
   assign uo_out[2] =   Input[0];
   assign uio_out = 0;
   assign uio_oe  = 0;
