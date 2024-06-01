@@ -15,19 +15,23 @@ module tt_um_davidparent_hdl (
 );
     reg [30:0] lfsr;
     reg [30:0] lfsr_test;
+    reg [60:0] lfsr_big;
     reg [8:0] InputA;
     reg [7:0] InputB;
     reg [2:0] out;
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
         lfsr <= 31'd1; 
-        lfsr_test <= 31'd1;   
+        lfsr_test <= 31'd1;  
+        lfsr_big <=61'd1;
         InputA<=9'b000000000;  
         InputB<=8'b00000000;  
         out<=3'b000;    
     end else begin
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
+        lfsr_big[0] <= lfsr_big[29] ^ lfsr_big[60] ;
+        lfsr_big[60:1] <=lfsr_big[59:0] ; 
         InputA[8]<=ui_in[0];
         lfsr_test[0] <= InputA[8];
         lfsr_test[30:1] <=lfsr_test[29:0] ;
@@ -54,10 +58,11 @@ end
   assign uo_out[2] =   InputA[0];
   assign uo_out[3] =   InputB[0]; 
   assign uo_out[4] = out[0];
-  assign uo_out[5] = out[2];     
+  assign uo_out[5] = out[2];    
+  assign uo_out[7:6] = lfsr_big[60:59];    
   assign uio_out = 0;
   assign uio_oe  = 0;
-  assign uo_out[7:6]= 2'b00;
+ // assign uo_out[7:6]= 2'b00;
   // List all unused inputs to prevent 
     wire _unused = &{ena, uio_in[0], 1'b0}; 
 endmodule
