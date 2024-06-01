@@ -21,9 +21,12 @@ module tt_um_davidparent_hdl (
     reg [2:0] out;
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
-        lfsr <= 31'd1; 
-        lfsr_test <= 31'd1;  
-        lfsr_big <=61'd1;
+        //lfsr <= 31'd1; 
+        lfsr <=~0;    
+        //lfsr_test <= 31'd1; 
+        lfsr_test <= ~0   ; 
+        //lfsr_big <=61'd1;
+        lfsr_big <=~0;       
         InputA<=9'b000000000;  
         InputB<=8'b00000000;  
         out<=3'b000;    
