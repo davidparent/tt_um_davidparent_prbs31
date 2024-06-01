@@ -33,7 +33,7 @@ end
   // All output pins must be assigned. If not used, assign to 0. 
   assign uo_out[0] =lfsr[30] ;
   assign uo_out[1] =lfsr_test[30] ;  
-  assign uo_out[2] =Input[1] ;    
+  assign uo_out[5:2] =Input[7:4] ;    
   assign uio_out = 0;
   assign uio_oe  = 0;
     assign uo_out[7:3]= 5'b00000;
