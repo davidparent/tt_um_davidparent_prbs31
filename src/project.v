@@ -33,11 +33,10 @@ module tt_um_davidparent_hdl (
 end  
   // All output pins must be assigned. If not used, assign to 0. 
   assign uo_out[0] =lfsr[30] ;
-  assign uo_out[1] =lfsr_test[30] ;  
-  assign uo_out[5:2] =Input[7:4] ;    
+  assign uo_out[1] =lfsr_test[30] ;    
   assign uio_out = 0;
   assign uio_oe  = 0;
-  assign uo_out[7:6]= 2'b00;
+  assign uo_out[7:2]= 6'b000000;
   // List all unused inputs to prevent 
     wire _unused = &{ena, uio_in, ui_in[7:1], 1'b0}; 
 endmodule
