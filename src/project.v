@@ -20,7 +20,7 @@ module tt_um_davidparent_hdl (
         if (rst_n) begin
         lfsr <= 31'd1; 
         lfsr_test <= 31'd1;   
-        Input<=0;    
+        Input<=8'b00000000;    
     end else begin
         // Increment counter on each clock cycle
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
