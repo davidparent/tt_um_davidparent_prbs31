@@ -9,12 +9,14 @@ You can also include images in this folder and reference them in the markdown. E
 
 ## How it works
 
-Fibonacci LFSRs
+The chip generates a PRBS31 signal using a Fibonacci LFSR and analyzes it with the same structure. The output of the PRBS is taken off the chip and read back in to be analyzed.  
 
-A 16-bit Fibonacci  LFSR. The feedback tap numbers shown correspond to a primitive polynomial in the table, so the register cycles through the maximum number of 65535 states excluding the all-zeroes state. The state shown, 0xACE1 (hexadecimal) will be followed by 0x5670.
-Duration: 30 seconds.0:30
-A Fibonacci 31 bit linear feedback shift register with taps at positions 28 and 31, giving it a maximum cycle and period at this speed of nearly 6.7 years.
-The bit positions that affect the next state are called the taps. In the diagram the taps are [16,14,13,11]. The rightmost bit of the LFSR is called the output bit, which is always also a tap. To obtain the next state, the tap bits are XOR-ed sequentially; then, all bits are shifted one place to the right, with the rightmost bit being discarded, and that result of XOR-ing the tap bits is fed back into the now-vacant leftmost bit. To obtain the pseudorandom output stream, read the rightmost bit after each state transition. 
+Two 7-bit vectors are converted into puedo random signal PSR by comparing the vector to the PRBS.  These signals are also output and can be used as an alternative to a PWM DAC.  These two PRS are multiplied with an and gate, and the out is sent off-chip.  Singal A is squared by delaying it by one clock cycle and anding the signal with the delayed version.
+
+A 131-bit PRBS generator is included as well to fill up the tile as much as possible.
+
+Everything will be documented here:https://docs.google.com/document/d/1nhcHBQsxXUUo1_4WGjxFoWHzpVBCy18a5GQimM9eUtQ/edit?usp=sharing
+
 
 ## How to test
 
