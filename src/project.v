@@ -15,18 +15,19 @@ module tt_um_davidparent_hdl (
 );
     reg [30:0] lfsr;
     reg [30:0] lfsr_test;
-    reg [7:0] Input;
+    reg [8:0] Input;
     always @(posedge clk or posedge rst_n) begin
         if (rst_n) begin
         lfsr <= 31'd1; 
         lfsr_test <= 31'd1;   
-        Input<=8'b00000000;    
+        Input<=9'b000000000;    
     end else begin
         // Increment counter on each clock cycle
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
         //lfsr_test[0] <= lfsr_test[27] ^ lfsr_test[30] ;
-        lfsr_test[0] <=ui_in[0];
+        Input[8]<=ui_in[0]
+        lfsr_test[0] <= Input[8];
         lfsr_test[30:1] <=lfsr_test[29:0] ;
         Input[7:1]<=ui_in[7:1];
         if (Input[7:1]<lfsr[30:24]) begin
@@ -38,7 +39,7 @@ module tt_um_davidparent_hdl (
 end  
   // All output pins must be assigned. If not used, assign to 0. 
   assign uo_out[0] =lfsr[30] ;
-  assign uo_out[1] =lfsr_test[27] ^ lfsr_test[30] ;   
+    assign uo_out[1] =Input[8]^(lfsr_test[27] ^ lfsr_test[30] );   
   assign uo_out[2] =   Input[0];
   assign uio_out = 0;
   assign uio_oe  = 0;
