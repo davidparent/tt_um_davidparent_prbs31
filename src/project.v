@@ -15,7 +15,7 @@ module tt_um_davidparent_hdl (
 );
     reg [30:0] lfsr;
     reg [30:0] lfsr_test;
-    reg [96:0] lfsr_big;
+    reg [130:0] lfsr_big;
     reg [8:0] InputA;
     reg [7:0] InputB;
     reg [2:0] out;
@@ -33,8 +33,8 @@ module tt_um_davidparent_hdl (
     end else begin
         lfsr[0] <= lfsr[27] ^ lfsr[30] ;
         lfsr[30:1] <=lfsr[29:0] ;  
-        lfsr_big[0] <= lfsr_big[96] ^ lfsr_big[95] ;
-        lfsr_big[96:1] <=lfsr_big[95:0] ; 
+        lfsr_big[0] <= lfsr_big[130] ^ lfsr_big[129] ;
+        lfsr_big[130:1] <=lfsr_big[129:0] ; 
         InputA[8]<=ui_in[0];
         lfsr_test[0] <= InputA[8];
         lfsr_test[30:1] <=lfsr_test[29:0] ;
@@ -62,7 +62,7 @@ end
   assign uo_out[3] =   InputB[0]; 
   assign uo_out[4] = out[0];
   assign uo_out[5] = out[2];    
-  assign uo_out[7:6] = lfsr_big[96:95];    
+    assign uo_out[7:6] = lfsr_big[130:129];    
   assign uio_out = 0;
   assign uio_oe  = 0;
  // assign uo_out[7:6]= 2'b00;
