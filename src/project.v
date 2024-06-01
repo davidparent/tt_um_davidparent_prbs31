@@ -36,7 +36,7 @@ end
   assign uo_out[5:2] =Input[7:4] ;    
   assign uio_out = 0;
   assign uio_oe  = 0;
-    assign uo_out[7:3]= 5'b00000;
+  assign uo_out[7:6]= 2'b00;
   // List all unused inputs to prevent 
     wire _unused = &{ena, uio_in, ui_in, 1'b0}; 
 endmodule
