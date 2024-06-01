@@ -29,7 +29,7 @@ module tt_um_davidparent_hdl (
         lfsr_test[0] <=ui_in[0];
         lfsr_test[30:1] <=lfsr_test[29:0] ;
         Input[7:1]<=ui_in[7:1];
-        if (Input[7:1)<lfsr(30:24) begin
+        if (Input[7:1]<lfsr[30:24]) begin
             Input[0]<=1'b0;
         end else begin
             Input[0]<=1'b1;
