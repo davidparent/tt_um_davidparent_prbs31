@@ -19,7 +19,7 @@ out=np.ones(n_clock)
 input=out
 for i in range(n_clock):
   #input the feedback
-  PRBSN[0]=np.logical_xor(PRBSO[29],PRBSO[30])
+  PRBSN[0]=np.logical_xor(PRBSO[27],PRBSO[30])
   #shift the vlaues
   for j in range(len(PRBSN)-1):
     count=len(PRBSN)-j-1
@@ -52,8 +52,8 @@ async def test_project(dut):
     dut.rst_n.value = 0
  
     dut._log.info("Test project behavior")
-    n_clock=100
-    for i in range(n_clock):
+    #n_clock=120
+    for i in range(0,n_clock):
     # Wait for one clock cycle to see the output values
     	await ClockCycles(dut.clk, 1)
     # The following assersion is just an example of how to check the output values.
