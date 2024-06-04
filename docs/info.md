@@ -10,17 +10,18 @@ You can also include images in this folder and reference them in the markdown. E
 ## How it works
 
 The chip generates a PRBS31 signal using a Fibonacci LFSR and analyzes it with the same structure. The output of the PRBS is taken off the chip and read back in to be analyzed.  
-
-Two 7-bit vectors are converted into puedo random signal PSR by comparing the vector to the PRBS.  These signals are also output and can be used as an alternative to a PWM DAC.  These two PRS are multiplied with an and gate, and the out is sent off-chip.  Singal A is squared by delaying it by one clock cycle and anding the signal with the delayed version.
-
-A 131-bit PRBS generator is included as well to fill up the tile as much as possible.
-
+The PRBS generator is based on a 31-bit linear shift register with the feedback coming from registers 30 and 27.
 Everything will be documented here:https://docs.google.com/document/d/1nhcHBQsxXUUo1_4WGjxFoWHzpVBCy18a5GQimM9eUtQ/edit?usp=sharing
+
+co-lab code: https://colab.research.google.com/drive/1uSGfoFdt0cDL9Ya7yrQQEXQ4FVlEGef5?usp=drive_link
 
 
 ## How to test
 
-Input Clock and reset
+Input Clock and reset (Low high, then low)
+Take the output out of port io_out[0] and feed it back into the chip (after transmitting it if you like.) iio_out[1] will be zero after 31 clock cycles  if the data is correct.
+
+You can also capture the data and check it against the code at the end of the co-lab code listed above.
 
 ## External hardware
 
