@@ -19,7 +19,7 @@ out=[1]*(n_clock)
 # Run thoughthe simulation to create the idealized output.
 for i in range(n_clock):
   #input the feedback
-  PRBSN[0]=PRBSO[29]^PRBSO[30]
+  PRBSN[0]=PRBSO[27]^PRBSO[30]
   #shift the vlaues
   for j in range(prbs_size-1):
     count=prbs_size-j-1
